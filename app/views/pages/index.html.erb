@@ -1,0 +1,67 @@
+<% @results.each do |record| %>
+<div class="jumbotron">
+    <div class="content">
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <h2>
+                    <%= record['properties']['BLOCKNM'] %>
+                    <% if record['properties']['LOCDESC'] %>
+                    <small>
+                        <br/>
+                        <%= record['properties']['LOCDESC'] %>
+                    </small>
+                    <% end %>
+                </h2>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <% if record['properties']['STARTDATE'] %>
+                <h3>
+                    From <%= Date.parse(record['properties']['STARTDATE']).strftime("%B %d, %Y") %> - <br/> 
+                    <%= Date.parse(record['properties']['ENDDATE']).strftime("%B %d, %Y") %>
+                </h3>
+                <% end %>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <h3>
+                    <%= record['properties']['BLOCKTYPE'] %>
+                    <% if record['properties']['COMMENT'] %>
+                        <br/>
+                        <small>
+                            <%= record['properties']['COMMENT'] %>
+                        </small>
+                    <% end %>
+                </h3>
+            </div>
+            
+            <% if record['properties']['Hyperlink'] %>
+            <div class="col-xs-12 col-md-4">
+                <h3>
+                    More Information <br/>
+                    <small>
+                        <a href="<%= record['properties']['Hyperlink'] %>" target="_blank">
+                            Click
+                        </a>
+                    </small>
+                </h3>
+            </div>
+            <% end %>
+        </div>
+        
+        <% if record['properties']['ALTROUTE'] %>
+        <div class="row">
+            <div class="col-xs-12- col-md-8">
+                <h3>
+                    Alternate Route <br/>
+                    <small>
+                        <%= record['properties']['ALTROUTE'] %>
+                    </small>
+                </h3>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>
+<% end %>
